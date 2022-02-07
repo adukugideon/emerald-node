@@ -7,7 +7,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navbar } from "./app/components/navbar";
 import Nodes from "./app/containers/Nodes";
 import Mining from "./app/containers/Mining";
-import CreateNode from "./app/containers/CreateNode";
+import Ethereum from "./app/containers/CreateNode/Ethereum";
+import Polygon from "./app/containers/CreateNode/Polygon";
+import Sentinel from "./app/containers/CreateNode/Sentinel";
 
 const AppContainer = styled.div`
   ${tw`
@@ -39,7 +41,13 @@ function App() {
             <Mining />
           </Route>
           <Route exact path="/create">
-            <CreateNode />
+            <Ethereum />
+          </Route>
+          <Route exact path="/create/polygon">
+            <Polygon />
+          </Route>
+          <Route exact path="/create/sentinel">
+            <Sentinel />
           </Route>
         </Switch>
       </AppContainer>
