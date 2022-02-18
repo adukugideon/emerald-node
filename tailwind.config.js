@@ -69,6 +69,7 @@ module.exports = {
       104: "45rem",
       105: "56rem",
       106: "38rem",
+      107: "34rem",
     },
   },
   variants: {

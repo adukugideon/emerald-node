@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import CreateHeader from "../../components/createHeader";
 import { Link } from "react-router-dom";
 
 function Ethereum() {
   const [showModal, setShowModal] = React.useState(false);
+  const [account, setAccount] = useState<any>();
   return (
     <div className="flex flex-col lg:ml-72 md:ml-11 lg:w-99 md:w-104 w-96 ml-4 h-auto bg-gray-900 rounded-lg drop-shadow-xl pb-6 mt-6">
       <div className="flex justify-center mt-8">
@@ -29,14 +30,14 @@ function Ethereum() {
         />
       </div>
       <h1 className="text-white w-105 mt-5 ml-8">
-        A non-refundable and non-returnable contribution of 10 STRONG to the
-        StrongBlock community is required to create a node and participate in
+        A non-refundable and non-returnable contribution of 10 EMERALD to the
+        EmeraldNodes community is required to create a node and participate in
         rewards. Your 10 STRONG will be distributed as follows:
       </h1>
       <ul className="list-disc text-white ml-12 mt-6">
         <li>10% future use</li>
-        <li>0% to STRONG-ETH and LINK-STRONG Pools for rewards</li>
-        <li>20% into the Strong Pool</li>
+        <li>0% to EMERALD-AVAZ and LINK-EMERALD Pools for rewards</li>
+        <li>20% into the Emerald Pool</li>
         <li>60% into node rewards pool</li>
       </ul>
       <h1 className="text-white w-105 mt-5 ml-8">
@@ -95,8 +96,16 @@ function Ethereum() {
 
                 <div className="flex flex-col">
                   <div className="flex justify-center">
-                    <div className="cursor-pointer hover:bg-gray-800 w-60 h-10 rounded-md text-yellow-200 font-bold bg-gray-700 mt-5 flex justify-center pt-1.5 border border-blue-300 outline-none focus:outline-none ease-linear transition-all duration-150">
-                      Install Metamask
+                    <div
+                      onClick={async () => {
+                        if ((window as any).ethereum) {
+                          setAccount(await (window as any).ethereum.enable());
+                          console.log(account);
+                        }
+                      }}
+                      className="cursor-pointer hover:bg-gray-800 w-60 h-10 rounded-md text-yellow-200 font-bold bg-gray-700 mt-5 flex justify-center pt-1.5 border border-blue-300 outline-none focus:outline-none ease-linear transition-all duration-150"
+                    >
+                      {account ? "Metamask Connected" : "Connect Metamask"}
                     </div>
                   </div>
                   <div className="flex justify-center">

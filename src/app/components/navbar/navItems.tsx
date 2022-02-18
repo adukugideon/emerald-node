@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import tw from "twin.macro";
 import { slide as Menu } from "react-burger-menu";
@@ -16,12 +16,13 @@ const ListContainer = styled.ul`
 const NavGroup = styled.div`
   ${tw`
     flex 
-    md:mr-32 
+    md:mr-20 
     md:mt-2 
-    lg:mr-97 
+    lg:mr-64 
     lg:mt-2
     sm:mt-2
     sm:mr-24
+    xl:mr-80
   `};
 `;
 const Connect = styled.button`
@@ -70,7 +71,8 @@ const NavItem = styled.li<{ menu?: any }>`
 
 export function NavItems() {
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [account, setAccount] = useState<any>();
 
   if (isMobile)
     return (
@@ -78,18 +80,28 @@ export function NavItems() {
         <Menu right styles={menuStyles}>
           <ListContainer>
             <NavItem menu>
-              <Link to="/">
+              <Link to="/nft">
                 <a href="/#">NFTS</a>
               </Link>
             </NavItem>
             <NavItem menu>
-              <Link to="allCars">
+              <Link to="home">
                 <a href="/#">APP</a>
               </Link>
             </NavItem>
             <NavItem menu>
-              <Link to="contact">
+              <Link to="/liquidity">
+                <a href="/#">LIQUIDITY</a>
+              </Link>
+            </NavItem>
+            <NavItem menu>
+              <Link to="/support">
                 <a href="/#">SUPPORT</a>
+              </Link>
+            </NavItem>
+            <NavItem menu>
+              <Link to="/reward">
+                <a href="/#">REWARD</a>
               </Link>
             </NavItem>
             <NavItem menu>
@@ -106,13 +118,19 @@ export function NavItems() {
     <ListContainer>
       <NavGroup>
         <NavItem>
-          <a href="/#">NFTS</a>
+          <a href="/nft">NFTS</a>
         </NavItem>
         <NavItem>
-          <a href="/#">APP</a>
+          <a href="/">APP</a>
         </NavItem>
         <NavItem>
-          <a href="/#">SUPPORT</a>
+          <a href="/support">SUPPORT</a>
+        </NavItem>
+        <NavItem>
+          <a href="/liquidity">LIQUIDITY</a>
+        </NavItem>
+        <NavItem>
+          <a href="/reward">REWARD</a>
         </NavItem>
       </NavGroup>
       <Connect onClick={() => setShowModal(true)}>O Connect Wallet</Connect>
@@ -129,8 +147,16 @@ export function NavItems() {
 
                 <div className="flex flex-col">
                   <div className="flex justify-center">
-                    <div className="cursor-pointer hover:bg-gray-800 w-60 h-10 rounded-md text-yellow-200 font-bold bg-gray-700 mt-5 flex justify-center pt-1.5 border border-blue-300 outline-none focus:outline-none ease-linear transition-all duration-150">
-                      Install Metamask
+                    <div
+                      onClick={async () => {
+                        if ((window as any).ethereum) {
+                          setAccount(await (window as any).ethereum.enable());
+                          console.log(account);
+                        }
+                      }}
+                      className="cursor-pointer hover:bg-gray-800 w-60 h-10 rounded-md text-yellow-200 font-bold bg-gray-700 mt-5 flex justify-center pt-1.5 border border-blue-300 outline-none focus:outline-none ease-linear transition-all duration-150"
+                    >
+                      {account ? "Metamask Connected" : "Connect Metamask"}
                     </div>
                   </div>
                   <div className="flex justify-center">

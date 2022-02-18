@@ -1,7 +1,5 @@
 # TODO
-- Refactor code and update structure 
 - Fix responsiveness for mobile
-- Connect to avalanche
 - work on solidity parts
   In the project directory, you can run:
 

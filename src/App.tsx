@@ -10,6 +10,10 @@ import Mining from "./app/containers/Mining";
 import Ethereum from "./app/containers/CreateNode/Ethereum";
 import Polygon from "./app/containers/CreateNode/Polygon";
 import Sentinel from "./app/containers/CreateNode/Sentinel";
+import Support from "./app/containers/SupportPage";
+import Nft from "./app/containers/NFTPage";
+import Liquidity from "./app/containers/LiquidityPage";
+import RewardPage from "./app/containers/RewardPage";
 
 const AppContainer = styled.div`
   ${tw`
@@ -20,7 +24,7 @@ const AppContainer = styled.div`
     bg-gradient-to-t 
     from-gray-900 
     to-black 
-    pb-12 
+    pb-20 
     overflow-hidden
   `};
 `;
@@ -48,6 +52,18 @@ function App() {
           </Route>
           <Route exact path="/create/sentinel">
             <Sentinel />
+          </Route>
+          <Route exact path="/support">
+            <Support />
+          </Route>
+          <Route exact path="/nft">
+            <Nft />
+          </Route>
+          <Route exact path="/liquidity">
+            <Liquidity />
+          </Route>
+          <Route exact path="/reward">
+            <RewardPage />
           </Route>
         </Switch>
       </AppContainer>
